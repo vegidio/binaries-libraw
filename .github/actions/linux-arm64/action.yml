@@ -32,8 +32,8 @@ runs:
         cp $GITHUB_WORKSPACE/builder/installed/arm64-linux/lib/manual-link/*.a $GITHUB_WORKSPACE/static_arm64/lib/
 
         cp -r $GITHUB_WORKSPACE/builder/installed/arm64-linux-dynamic/include/libraw $GITHUB_WORKSPACE/dynamic_arm64/include
-        cp $GITHUB_WORKSPACE/builder/installed/arm64-linux-dynamic/lib/*.so* $GITHUB_WORKSPACE/dynamic_arm64/lib/
-        cp $GITHUB_WORKSPACE/builder/installed/arm64-linux-dynamic/lib/manual-link/*.so* $GITHUB_WORKSPACE/dynamic_arm64/lib/
+        cp -a $GITHUB_WORKSPACE/builder/installed/arm64-linux-dynamic/lib/*.so* $GITHUB_WORKSPACE/dynamic_arm64/lib/
+        cp -a $GITHUB_WORKSPACE/builder/installed/arm64-linux-dynamic/lib/manual-link/*.so* $GITHUB_WORKSPACE/dynamic_arm64/lib/
 
     - name: Zip local
       shell: bash
@@ -42,7 +42,7 @@ runs:
         7z a -tzip -mx=9 $GITHUB_WORKSPACE/static_linux_arm64.zip include lib
 
         cd $GITHUB_WORKSPACE/dynamic_arm64
-        7z a -tzip -mx=9 $GITHUB_WORKSPACE/dynamic_linux_arm64.zip include lib
+        7z a -tzip -mx=9 -snl $GITHUB_WORKSPACE/dynamic_linux_arm64.zip include lib
 
     - name: Save artifacts
       uses: actions/upload-artifact@v5
