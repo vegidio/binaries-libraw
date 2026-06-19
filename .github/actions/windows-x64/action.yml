@@ -4,10 +4,7 @@ runs:
   using: composite
   steps:
     - name: Code checkout
-      uses: actions/checkout@v4
-
-    - name: Install NASM
-      uses: ilammy/setup-nasm@v1
+      uses: actions/checkout@v5
 
     - name: Install MSYS2
       uses: msys2/setup-msys2@v2
@@ -51,9 +48,6 @@ runs:
         for file in "$GITHUB_WORKSPACE"/builder/installed/x64-mingw-dynamic/bin/*.dll; do
           cp "$file" "$GITHUB_WORKSPACE/dynamic_x64/lib/"
         done
-        for file in "$GITHUB_WORKSPACE"/builder/installed/x64-mingw-dynamic/bin/manual-link/*.dll; do
-          cp "$file" "$GITHUB_WORKSPACE/dynamic_x64/lib/"
-        done
 
     - name: Zip local
       shell: bash
@@ -65,7 +59,7 @@ runs:
         7z a -tzip -mx=9 $GITHUB_WORKSPACE/dynamic_windows_x64.zip include lib
 
     - name: Save artifacts
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v5
       with:
         name: binaries-windows-x64
         path: "*.zip"

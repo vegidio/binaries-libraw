@@ -13,7 +13,7 @@ jobs:
     steps:
       # The `fetch-depth: 0` is important to fetch all the tags
       - name: Code checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
@@ -30,7 +30,7 @@ jobs:
       MACOSX_DEPLOYMENT_TARGET: "10.15"
     steps:
       - name: Code checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Create macOS binaries
         uses: ./.github/actions/macos-all
@@ -40,7 +40,7 @@ jobs:
     needs: [version]
     steps:
       - name: Code checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Create Linux AMD64 binaries
         uses: ./.github/actions/linux-x64
@@ -50,7 +50,7 @@ jobs:
     needs: [version]
     steps:
       - name: Code checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Create Linux ARM64 binaries
         uses: ./.github/actions/linux-arm64
@@ -60,7 +60,7 @@ jobs:
     needs: [version]
     steps:
       - name: Code checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Create Windows binaries
         uses: ./.github/actions/windows-x64
@@ -70,7 +70,7 @@ jobs:
     needs: [version]
     steps:
       - name: Code checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Create Windows binaries
         uses: ./.github/actions/windows-arm64
@@ -83,13 +83,13 @@ jobs:
     steps:
       # The `fetch-depth: 0` is important to fetch all the tags
       - name: Code checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           ref: main
           fetch-depth: 0
 
       - name: Fetch artifact
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           path: binaries
           merge-multiple: true
